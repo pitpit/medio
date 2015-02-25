@@ -41,25 +41,8 @@ class File
      */
     public function __construct($filename, Structure $structure)
     {
-        $filenameWithoutExtension = rtrim($filename, '.php');
-        $parts = explode('/', $filenameWithoutExtension);
-        $uppercases = array(
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        );
-        $i = count($parts) - 1;
-        // Detecting the first part that starts with a lowercase character
-        while ($i >= 0 && in_array($parts[$i][0], $uppercases, true)) {
-            $i--;
-        }
-        if ($parts[$i] !== 'spec') {
-            $i++;
-        }
-        $namespaces = array_slice($parts, $i);
-        $fullyQualifiedName = implode('\\', $namespaces);
-
         $this->filename = $filename;
-        $this->fullyQualifiedName = new FullyQualifiedName($fullyQualifiedName);
+        $this->fullyQualifiedName = new FullyQualifiedName($structure->getNamespace());
         $this->structure = $structure;
     }
 

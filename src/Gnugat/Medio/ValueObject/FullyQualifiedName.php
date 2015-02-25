@@ -42,7 +42,7 @@ class FullyQualifiedName
 
         $this->name = array_pop($namespaces);
         $this->namepace = implode('\\', $namespaces);
-        if ('\\' !== $fullyQualifiedName[0]) {
+        if ('\\' !== substr($fullyQualifiedName, 0, 1)) {
             $fullyQualifiedName = '\\'.$fullyQualifiedName;
         }
         $this->fullyQualifiedName = $fullyQualifiedName;
